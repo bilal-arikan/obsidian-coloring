@@ -1,0 +1,135 @@
+/* ===== FILE EXPLORER: TEXT COLORING ===== */
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-text
+	> .nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-text
+	> .nav-file-title {
+	color: var(--file-color-color);
+}
+
+/* Cascade text color to all descendants (custom property is inherited). */
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-text.file-color-cascade
+	.nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-text.file-color-cascade
+	.nav-file-title {
+	color: var(--file-color-color);
+}
+
+/* ===== FILE EXPLORER: BACKGROUND COLORING ===== */
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-background
+	> .nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-background
+	> .nav-file-title {
+	background-color: color-mix(in srgb, var(--file-color-color) 15%, transparent);
+}
+
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-background.file-color-cascade
+	.nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer']
+	.nav-files-container
+	.file-color-file.file-color-type-background.file-color-cascade
+	.nav-file-title {
+	background-color: color-mix(in srgb, var(--file-color-color) 15%, transparent);
+}
+
+/* ===== TAB HEADER ACCENT ===== */
+/* The title text color is set inline; this adds a colored underline. */
+.workspace-tab-header.file-color-tab {
+	box-shadow: inset 0 -2px 0 0 var(--file-color-color);
+}
+
+/* ===== SET COLOR MODAL ===== */
+.file-color-picker-modal .file-color-section-label {
+	font-weight: 600;
+	margin: 12px 0 6px;
+}
+
+.file-color-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+
+.file-color-cell {
+	position: relative;
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 2px solid var(--background-modifier-border);
+	transition: transform 0.08s ease;
+}
+
+.file-color-cell:hover {
+	transform: scale(1.08);
+}
+
+.file-color-cell.is-selected {
+	border-color: var(--interactive-accent);
+	box-shadow: 0 0 0 2px var(--interactive-accent);
+}
+
+.file-color-cell-delete {
+	position: absolute;
+	top: -7px;
+	right: -7px;
+	width: 16px;
+	height: 16px;
+	line-height: 14px;
+	text-align: center;
+	border-radius: 50%;
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	color: var(--text-muted);
+	font-size: 12px;
+	display: none;
+}
+
+.file-color-cell:hover .file-color-cell-delete {
+	display: block;
+}
+
+.file-color-add-row {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.file-color-add-row .file-color-input {
+	width: 40px;
+	height: 32px;
+	padding: 0;
+	cursor: pointer;
+}
+
+.file-color-add-row .file-color-name-input {
+	flex: 1;
+}
+
+.file-color-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.file-color-empty {
+	color: var(--text-muted);
+	font-size: 0.9em;
+	margin: 4px 0 8px;
+}
