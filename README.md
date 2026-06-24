@@ -1,5 +1,10 @@
 # Obsidian File Color Picker
 
+<img width="865" height="486" alt="image" src="https://github.com/user-attachments/assets/ed48bfdf-58dc-4db8-979f-e6e11c187902" />
+
+<img width="221" height="182" alt="image" src="https://github.com/user-attachments/assets/46c4cd56-f840-4046-ab98-9be47e43937b" />
+
+
 Color files and folders in the [Obsidian](https://obsidian.md) file explorer with a
 **native color picker**. Inspired by
 [ecustic/obsidian-file-color](https://github.com/ecustic/obsidian-file-color), but
