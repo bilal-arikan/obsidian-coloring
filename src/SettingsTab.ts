@@ -1,8 +1,11 @@
-import { PluginSettingTab, Setting } from 'obsidian'
+import { Notice, PluginSettingTab, Setting } from 'obsidian'
 import type FileColorPickerPlugin from './main'
 import { generateId, normalizeHex } from './settings'
+import { getSourceStatus, importFromFileColor } from './importer'
 
 export class FileColorSettingTab extends PluginSettingTab {
+	private importDisplayOptions = true
+
 	constructor(private plugin: FileColorPickerPlugin) {
 		super(plugin.app, plugin)
 	}
@@ -125,5 +128,60 @@ export class FileColorSettingTab extends PluginSettingTab {
 						this.display()
 					})
 			)
+
+		// --- Import from the original "File Color" plugin ---
+		new Setting(containerEl).setName('Import from "File Color" (ecustic)').setHeading()
+
+		const statusEl = containerEl.createDiv({ cls: 'file-color-empty' })
+		statusEl.setText('Checking this vault for the original "File Color" plugin…')
+		this.refreshSourceStatus(statusEl)
+
+		new Setting(containerEl)
+			.setName('Also import display options')
+			.setDesc('Copy the original cascade and background toggles as well.')
+			.addToggle((t) =>
+				t.setValue(this.importDisplayOptions).onChange((v) => {
+					this.importDisplayOptions = v
+				})
+			)
+
+		new Setting(containerEl)
+			.setName('Import colors & assignments')
+			.setDesc(
+				'Read the palette and file colors from the original plugin in this vault and merge them in. Existing colors are kept; matching paths are updated.'
+			)
+			.addButton((btn) =>
+				btn
+					.setButtonText('Import now')
+					.setCta()
+					.onClick(async () => {
+						const summary = await importFromFileColor(this.plugin, {
+							importDisplayOptions: this.importDisplayOptions,
+						})
+						if (!summary.found) {
+							new Notice('Original "File Color" plugin data not found in this vault.')
+						} else {
+							const skipped = summary.skipped
+								? `, ${summary.skipped} skipped`
+								: ''
+							new Notice(
+								`Imported ${summary.fileColorsImported} file colors, +${summary.paletteAdded} palette colors${skipped}.`
+							)
+						}
+						this.display()
+					})
+			)
+	}
+
+	// Asynchronously update the status line with what the original plugin holds.
+	private async refreshSourceStatus(el: HTMLElement): Promise<void> {
+		const status = await getSourceStatus(this.plugin)
+		if (!status.found) {
+			el.setText('Original "File Color" plugin not found in this vault — nothing to import.')
+			return
+		}
+		el.setText(
+			`Found "File Color" data: ${status.paletteCount} palette colors, ${status.fileColorCount} file assignments.`
+		)
 	}
 }

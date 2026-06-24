@@ -14,6 +14,9 @@ otomatik olarak yeniden kullanılabilir bir listeye eklenir.
 - **Metin veya arka plan**: Dosya gezgininde metni mi yoksa satır arka planını mı renklendireceğini seç.
 - **Alt öğelere yayma (cascade)**: Bir klasör rengini içindeki tüm dosyalara uygula.
 - **Ayarlar panelinde palet yönetimi**: Renkleri düzenle, isimlendir, sil.
+- **Orijinal "File Color" eklentisinden içe aktarma**: Aynı vault'ta kurulu
+  [ecustic/obsidian-file-color](https://github.com/ecustic/obsidian-file-color)
+  eklentisinin paletini ve dosya renklerini tek tıkla aktarır (id→hex eşlemesi otomatik).
 
 ## Hızlı Kurulum
 
@@ -66,6 +69,14 @@ Geliştirme sırasında otomatik yeniden derleme için: `npm run dev`.
    - **Pick a new color**: Renk kutusundan yeni renk seç, istersen isim ver, **Add & apply**.
    - **Remove color**: Mevcut rengi kaldır.
 3. Renkli bir dosyayı açtığında sekme başlığı da otomatik renklenir.
+
+### Orijinal "File Color" eklentisinden geçiş
+
+Daha önce [ecustic/obsidian-file-color](https://github.com/ecustic/obsidian-file-color)
+kullandıysan: **Settings → File Color Picker → Import from "File Color"** bölümüne git.
+Aynı vault'taki orijinal eklentinin verisi (palet + dosya renkleri) bulunursa sayısı
+gösterilir; **Import now** ile birleştirilir. Mevcut renklerin korunur, aynı yola sahip
+atamalar güncellenir. İstersen orijinal "cascade / background" seçenekleri de aktarılır.
 
 ## Mimari
 

@@ -1,7 +1,7 @@
 {
 	"id": "file-color-picker",
 	"name": "File Color Picker",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"minAppVersion": "1.2.7",
 	"description": "Right-click any file or folder and pick a color from a native color picker. Chosen colors are saved to a reusable palette and can also tint the open file's tab header.",
 	"author": "Bilal Arikan",
